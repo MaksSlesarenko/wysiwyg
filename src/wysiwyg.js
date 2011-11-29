@@ -448,16 +448,14 @@
                         $widget.resize();
                         
                     }
-                    var height = 0, width = 0;
-                    _self.toolbar().each(function(){
+                    var height = 0;
+                    _self.toolbar().each(function() {
                         var $this = $(this);
                         height += $this.height();
-                        width += $this.width();
                     });
                     
                     $frame.add($widget.find('.' + _self.options.frameOverlayClass))
-                          .height($widget.height() - height)
-                          .width($widget.width() - width);
+                          .height($widget.height() - height);
                     
                 }, 1000);
             } else {

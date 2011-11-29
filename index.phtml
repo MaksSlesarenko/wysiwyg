@@ -1,0 +1,486 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        <meta http-equiv="Content-Language" content="en-US" >
+        <title>Jquery Wysiwyg</title>
+
+        <link href="src/style.css" media="screen" rel="stylesheet" type="text/css" >
+
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" >
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.js"></script>
+        <style type="text/css">
+        html {
+            font-size: 0.7em;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="tabs">
+            <ul>
+                <li><a href="#options">Options</a></li>
+                <li><a href="#methods">Methods</a></li>
+            </ul>
+            <div id="options">
+
+                <h3>Editor</h3>
+
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>wrapperClass</td>
+                        <td>String</td>
+                        <td>wysiwyg-wrapper</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'wrapperClass')
+                                <br />
+                                $('element').wysiwyg({wrapperClass: 'wrapper'})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>toolbarWrapperClass</td>
+                        <td>String</td>
+                        <td>wysiwyg-toolbar</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'toolbarWrapperClass')
+                                <br />
+                                $('element').wysiwyg({toolbarWrapperClass: 'wrapper'})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>frameWrapperClass</td>
+                        <td>String</td>
+                        <td>wysiwyg-frame</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'frameWrapperClass')
+                                <br />
+                                $('element').wysiwyg({frameWrapperClass: 'wrapper'})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>resizable</td>
+                        <td>Object</td>
+                        <td>{handles: 's'}</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'resizable')
+                                <br />
+                                $('element').wysiwyg('option', 'resizable', {handles: 'se'})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ui</td>
+                        <td>Boolen</td>
+                        <td>true</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'ui')
+                                <br />
+                                $('element').wysiwyg('option', 'ui', false)
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>autosave</td>
+                        <td>Object</td>
+                        <td>{url: null, enabled: true, interval: 5}</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'autosave')
+                                <br />
+                                $('element').wysiwyg({autosave: {url: '/save'}})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>css</td>
+                        <td>String</td>
+                        <td>NULL</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'css')
+                                <br />
+                                $('element').wysiwyg({css: 'frame.css'})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>commandsMap</td>
+                        <td>Object</td>
+                        <td>EditorCommandsMap</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'commandsMap')
+                                <br />
+                                $('element').wysiwyg('option', 'commandsMap', {commandName: function(){}})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>eventsMap</td>
+                        <td>Object</td>
+                        <td>EditorEventsMap</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'eventsMap')
+                                <br />
+                                $('element').wysiwyg('option', 'eventsMap', {eventName: function(e){}})
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>template</td>
+                        <td>String</td>
+                        <td>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg({template: '&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;'})
+                            </code>
+                        </td>
+                    </tr>
+
+                </table>
+
+                <h3>Toolbar</h3>
+
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>editor</td>
+                        <td>Array</td>
+                        <td>[]</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'editor')
+                                <br />
+                                $('element').wysiwyg('option', 'editor', $('textarea').wysiwyg())
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>ui</td>
+                        <td>Boolen</td>
+                        <td>true</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('option', 'ui')
+                                <br />
+                                $('element').wysiwyg('option', 'ui', false)
+                            </code>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="methods">
+                <h3>Editor</h3>
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>commands</td>
+                        <td>Add new editor commands</td>
+                        <td>
+                            <code>$('element').wysiwyg('commands', {commandName: function(){}})</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>events</td>
+                        <td>Add new editor events</td>
+                        <td>
+                            <code>$('element').wysiwyg('events', {keypress: function(e){}})</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>clean</td>
+                        <td>Remove garbage from editor content</td>
+                        <td>
+                            <code>$('element').wysiwyg('clean')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>activeNode</td>
+                        <td>Get editor active node</td>
+                        <td>
+                            <code>$('element').wysiwyg('activeNode')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>show</td>
+                        <td>Show widget</td>
+                        <td>
+                            <code>$('element').wysiwyg('show')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hide</td>
+                        <td>Hide widget</td>
+                        <td>
+                            <code>$('element').wysiwyg('hide')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>exec</td>
+                        <td>
+                            Execute editor command
+                            <p>Default commands https://developer.mozilla.org/en/Rich-Text_Editing_in_Mozilla</p>
+                            <p>Additional commands can be added via commandsMap</p>
+                        </td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'insertdtml', '&lt;b&gt;bold text&lt;/b&gt;')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>widget</td>
+                        <td>Get widget selector</td>
+                        <td>
+                            <code>$('element').wysiwyg('widget')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>selected</td>
+                        <td>Get selected text inside editor</td>
+                        <td>
+                            <code>$('element').wysiwyg('selected')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>html</td>
+                        <td>Get or set editor content</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('html', '&lt;p&gt;new contents&lt;/p&gt;')
+                                <br/>
+                                $('element').wysiwyg('html')
+                            </code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>destroy</td>
+                        <td>Destroy widget</td>
+                        <td>
+                            <code>$('element').wysiwyg('destroy')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>enable</td>
+                        <td>Enable widget</td>
+                        <td>
+                            <code>$('element').wysiwyg('enable')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>disable</td>
+                        <td>Disable widget</td>
+                        <td>
+                            <code>$('element').wysiwyg('disable')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>toolbar</td>
+                        <td>Add or get toolbars</td>
+                        <td>
+                            <code>
+                                $('element').wysiwyg('toolbar')
+                                <br />
+                                $('element').wysiwyg('toolbar', $('#toolbar'))
+                                <br />
+                                $('element').wysiwyg('toolbar', '#toolbar')
+                            </code>
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>Toolbar</h3>
+
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>editor</td>
+                        <td>Set editor</td>
+                        <td>
+                            <code>$('element').wysiwygToolbar('editor', $('textarea').wysiwyg());</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>show</td>
+                        <td>Show widget</td>
+                        <td>
+                            <code>$('element').wysiwygToolbar('show')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>hide</td>
+                        <td>Hide widget</td>
+                        <td>
+                            <code>$('element').wysiwygToolbar('hide')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>widget</td>
+                        <td>Get widget selector</td>
+                        <td>
+                            <code>$('element').wysiwygToolbar('widget')</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>destroy</td>
+                        <td>Destroy widget</td>
+                        <td>
+                            <code>$('element').wysiwygToolbar('destroy')</code>
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>CommandsMap</h3>
+
+                <table border="1" cellpadding="10">
+                    <tr>
+                        <th>Method</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                    <tr>
+                        <td>justify</td>
+                        <td>Justify current text block</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'justify', 'right');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>strike</td>
+                        <td>Strike selected text</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'strike');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>format</td>
+                        <td>Wrap text with html tag</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'format', 'p');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>tag</td>
+                        <td>Insert new html tag (br or hr)</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'tag', 'br');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>quote</td>
+                        <td>Wrap selected text with &quote;</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'quote', 'br');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>list</td>
+                        <td>Insert list. if argument is true - ordered</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'list', true);</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>link</td>
+                        <td>Wrap selected text with &lt;a&gt; tag</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'tag', 'br');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>html</td>
+                        <td>Insert html</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'html', '&lt;p&gt;hello&lt;/p&gt;');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isFontSize</td>
+                        <td>Check if font size equals to an argument</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isFontSize', 2);</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isFontFace</td>
+                        <td>Check if font family equals to an argument</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isFontFace', 'Arial');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isBold</td>
+                        <td>Check if text is bold</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isBold');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isUnderline</td>
+                        <td>Check if text is underlined</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isUnderline');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isItalic</td>
+                        <td>Check if text is italic</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isItalic');</code>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>isJustify</td>
+                        <td>Check if text is justified to an argument</td>
+                        <td>
+                            <code>$('element').wysiwyg('exec', 'isJustify', 'left');</code>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="demos">
+            <h2>Minimal</h2>
+            <iframe id="minimal" frameborder="0" src="minimal.phtml" style="width:900px; height: 400px"></iframe>
+
+            <h2>Medium</h2>
+            <iframe id="medium" frameborder="0" src="medium.phtml" style="width:900px; height: 500px"></iframe>
+
+            <h2>Full</h2>
+            <iframe id="full" frameborder="0" src="full.phtml" style="width:900px; height: 500px"></iframe>
+        </div>
+
+        <script type="text/javascript">
+        	$(function(){
+                $('#tabs').tabs();
+        	});
+        </script>
+    </body>
+</html>

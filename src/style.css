@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+.wysiwyg-wrapper {
+    overflow: hidden;
+    padding:0;
+    margin: 0;
+}
+.wysiwyg-wrapper li {
+    position: relative;
+}
+.wysiwyg-frame {
+    border-top: 1px solid #D9D9D9;
+    height: 100%;
+}
+.wysiwyg-frame-overlay {
+    display: none;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.wysiwyg-toolbar > div {
+    height: 40px;
+}
+.dropdown-slider {
+    z-index:99999;
+    width: 100%;
+    margin-right: 5px;
+}
+.dropdown > button {
+    min-width: 100px;
+    font-size: 12px !important;
+}
+.colorpick-color {
+    height: 20px;
+    width: 20px;
+}
+.colorpick-td {
+    border: 1px solid #D9D9D9;
+}
+.colorpick-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+}

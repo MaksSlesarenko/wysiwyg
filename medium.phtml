@@ -1,0 +1,141 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        <meta http-equiv="Content-Language" content="en-US" >
+        <title>Jquery Wysiwyg</title>
+
+
+        <link href="src/style.css" media="screen" rel="stylesheet" type="text/css" >
+
+        <link href="google-ui/css/css3-buttons.css" media="screen" rel="stylesheet" type="text/css" >
+
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" >
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.js"></script>
+
+        <script type="text/javascript" src="src/wysiwyg.js"></script>
+    </head>
+    <body>
+
+        <textarea name="demo" id="demo">Hello World</textarea>
+
+        <div id="toolbar">
+            <button class="button left toolbar-button" cmd="bold" status="isBold" title="Bold"><span class="icon icon20"></span></button>
+            <button class="button middle toolbar-button" cmd="italic"  param="italic" status="isItalic" title="Italic"><span class="icon icon114"></span></button>
+            <button class="button right toolbar-button" cmd="underline" param="underline" status="isUnderline" title="Underline"><span class="icon icon187"></span></button>
+
+            <button class="button left toolbar-button" cmd="indent" title="indent"><span class="icon icon204"></span></button>
+            <button class="button right toolbar-button" cmd="outdent" title="Outdent"><span class="icon icon205"></span></button>
+
+            <button class="button left toolbar-button" cmd="list" param="true"  title="Ordered"><span class="icon icon201"></span></button>
+            <button class="button right toolbar-button" cmd="list" title="Unordered"><span class="icon icon120"></span></button>
+
+            <button class="button left toolbar-button" cmd="justify" param="left" status="isJustify" title="Justify left"><span class="icon icon138"></span></button>
+            <button class="button middle toolbar-button" cmd="justify" param="center" status="isJustify" title="Justify center"><span class="icon icon140"></span></button>
+            <button class="button right toolbar-button" cmd="justify" param="right" status="isJustify" title="Justify right"><span class="icon icon139"></span></button>
+
+            <button class="button left toolbar-button" cmd="link" param="true" title="Insert link"><span class="icon icon119"></span></button>
+            <button class="button right toolbar-button" cmd="unlink" title="Remove link"><span class="icon icon25"></span></button>
+
+            <button class="button toolbar-button" cmd="image" title="Insert image"><span class="icon icon148"></span></button>
+
+            <button class="button toolbar-button" cmd="removeFormat" title="Remove formatting"><span class="icon icon83"></span></button>
+
+        </div>
+
+        <style type="text/css">
+        #demo {
+            width: 800px;
+            height: 400px;
+            display:block;
+        }
+        html {
+            font-size: 0.6em;
+        }
+        </style>
+
+        <script type="text/javascript">
+        	$(function(){
+                var toolbar = $('#toolbar').wysiwygToolbar({ui: false});
+                var toolbar2 = $('#toolbar2').wysiwygToolbar({ui: false});
+
+
+                $('#demo').wysiwyg({
+                    ui: true,
+                    css: "wym.css"
+                }).wysiwyg('toolbar', toolbar2)
+                  .wysiwyg('toolbar', toolbar)
+                  .wysiwyg('commands', {
+                    link: function () {
+                        var selected = this.selected();
+
+                        if (selected) {
+                            var url = prompt('Enter url', 'http://');
+
+                            if (url) {
+                                this._exec('createLink', url);
+                            } else {
+                                this._exec('unlink');
+                            }
+                        }
+                    },
+                    image: function() {
+                	    var url = prompt('Insert image url', '');
+                	    if (url) {
+                            $('#demo').wysiwyg('exec', 'inserthtml', '<img src="' + url + '"/>');
+                	    }
+                    }
+                });
+
+
+        	    $('body').append(
+        			$('<button>', {
+        				html: 'hide',
+        				click: function() {$('#demo').wysiwyg('hide')}
+        			}),
+        			$('<button>', {
+        				html: 'show',
+        				click: function() {$('#demo').wysiwyg('show')}
+        			}),
+        			$('<button>', {
+        				html: 'enable',
+        				click: function() {$('#demo').wysiwyg('enable')}
+        			}),
+        			$('<button>', {
+        				html: 'disable',
+        				click: function() {$('#demo').wysiwyg('disable')}
+        			}),
+        			$('<button>', {
+        				html: 'alert content',
+        				click: function() { alert( $('#demo').wysiwyg('html') )}
+        			}),
+        			$('<button>', {
+        				html: 'prompt content',
+        				click: function() {
+        					if (html = prompt('Enter html', '')) {
+        					    $('#demo').wysiwyg('html', html);
+        					}
+        				}
+        			}),
+        			$('<button>', {
+        				html: 'destroy',
+        				click: function() { $('#demo').wysiwyg('destroy'); }
+        			}),
+        			$('<button>', {
+        				html: 'clean',
+        				click: function() { $('#demo').wysiwyg('clean'); }
+        			}),
+        			$('<button>', {
+        				html: 'Old browser usage',
+        				click: function() {
+        					$('#demo').wysiwyg('hide')
+        					$('#demo').yourBrowserSucks({strict: false})
+        					$('#demo').wysiwyg('show')
+        				}
+        			})
+        		)
+
+        	});
+        </script>
+    </body>
+</html>

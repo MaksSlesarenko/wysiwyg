@@ -455,7 +455,8 @@
                         width += $this.width();
                     });
                     
-                    $frame.add($widget.find('.wysiwyg-frame-overlay')).height($widget.height() - height)
+                    $frame.add($widget.find('.' + _self.options.frameOverlayClass))
+                          .height($widget.height() - height)
                           .width($widget.width() - width);
                     
                 }, 1000);
@@ -471,7 +472,7 @@
          */
         _frameOverlay: function(showOrHide) {
             var $widget = $(this.widget());
-            $overlay = $widget.find('.wysiwyg-frame-overlay');
+            $overlay = $widget.find('.' + this.options.frameOverlayClass);
             
             $overlay.toggle(showOrHide);
         },
@@ -553,7 +554,7 @@
             });
             
             var $overlay = $('<div>', {
-                'class': 'wysiwyg-frame-overlay',
+                'class': options.frameOverlayClass,
                 width: '100%',
                 height: '100%'
             });
@@ -941,6 +942,7 @@
             wrapperClass: 'wysiwyg-wrapper',
             toolbarWrapperClass: 'wysiwyg-toolbar',
             frameWrapperClass: 'wysiwyg-frame',
+            frameOverlayClass: 'wysiwyg-frame-overlay',
             eventNamespace: 'zfcorewysiwyg',
             resizable: {handles: 's'},
             ui: false,
@@ -1000,9 +1002,10 @@
         _create: function() {
             var $el = $(this.element);
             var _self = this;
+            var options = _self.options;
             
             $el.children().data('toolbar', this);
-            var buttons = $el.find('.' + this.options.buttonClass).data('toolbar', this).click(function(){
+            var buttons = $el.find('.' + options.buttonClass).data('toolbar', this).click(function(){
                 
                 var $this  = $(this);
                 var action = $this.attr('action');
@@ -1022,7 +1025,7 @@
             
             if (buttons.length) {
                 
-                var $dynamicDropdown = $el.find('.' + _self.options.dropdownLabelClass).closest('.' + _self.options.dropdownClass); //find dropdowns with dynamic labels
+                var $dynamicDropdown = $el.find('.' + options.dropdownLabelClass).closest('.' + options.dropdownClass); //find dropdowns with dynamic labels
                 
                 $el.data('statusInterval', setInterval(function() {
                     //change button status (on/off)
@@ -1031,17 +1034,17 @@
     
                         buttons.each(function() {
                             var $this = $(this);
-                            $this.toggleClass(_self.options.buttonHighlightClass, editor.exec($this.attr('status'), $this.attr('param')));
+                            $this.toggleClass(options.buttonHighlightClass, editor.exec($this.attr('status'), $this.attr('param')));
                         });
                     }
                     
                     //change dropdown label (icon/value)
                     $dynamicDropdown.each(function () {
                         var $this = $(this);
-                        var $activeButton = $this.find('.' + _self.options.buttonHighlightClass);
+                        var $activeButton = $this.find('.' + options.buttonHighlightClass);
        
-                        var $icon = $this.find('.' + _self.options.dropdownIconClass);
-                        var $label = $this.find('.' + _self.options.dropdownLabelClass);
+                        var $icon = $this.find('.' + options.dropdownIconClass);
+                        var $label = $this.find('.' + options.dropdownLabelClass);
 
                         if ($activeButton.length) {
                             $icon.hide();
@@ -1054,29 +1057,29 @@
                 }, 1000));
             }
             
-            $el.find("." + _self.options.dropdownClass).find("button, input, a").click(function () {
-                var dropdown = $(this).closest('.' + _self.options.dropdownClass);
-                    dropdown.children('.' + _self.options.dropdownSliderClass).slideToggle('fast', function(){
+            $el.find("." + options.dropdownClass).find("button, input, a").click(function () {
+                var dropdown = $(this).closest('.' + options.dropdownClass);
+                    dropdown.children('.' + options.dropdownSliderClass).slideToggle('fast', function(){
                         _self.editor('_frameOverlay', $(this).is(':visible'));
                     });
                     
-                    dropdown.toggleClass(_self.options.dropdownActiveClass);
+                    dropdown.toggleClass(options.dropdownActiveClass);
             });
 
             $(document).bind('click', function (e) {
-                $el.find('.' + _self.options.dropdownClass).each(function() {
+                $el.find('.' + options.dropdownClass).each(function() {
                     if (e.target.parentNode != this && e.target.parentNode.parentNode != this) {
-                        $('.' + _self.options.dropdownSliderClass + ':visible', this).slideUp();
-                        $(this).removeClass(_self.options.dropdownActiveClass);
+                        $('.' + options.dropdownSliderClass + ':visible', this).slideUp();
+                        $(this).removeClass(options.dropdownActiveClass);
                     }
                 });
                 
                 _self.editor('_frameOverlay', false);
             });
             
-            $el.find('.' + this.options.colorPickerClass).colorpick({
+            $el.find('.' + options.colorPickerClass).colorpick({
                 click: function (e, color) {
-                    _self.editor('exec', $(this).closest('.' + _self.options.colorPickerClass).attr('name'), '#' + color);
+                    _self.editor('exec', $(this).closest('.' + options.colorPickerClass).attr('name'), '#' + color);
                 }
             });
         },

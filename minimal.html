@@ -4,25 +4,38 @@
         <meta http-equiv="Content-Language" content="en-US" >
         <title>Jquery Wysiwyg</title>
 
+        <link href="http://maksslesarenko.github.com/google-plus-ui/css/jquery-ui-1.8.16.google.plus.css" media="screen" rel="stylesheet" type="text/css" title="theme"/>
 
+        <link href="src/buttons.css" media="screen" rel="stylesheet" type="text/css" />
         <link href="src/style.css" media="screen" rel="stylesheet" type="text/css" >
 
-        <link href="google-ui/css/css3-buttons.css" media="screen" rel="stylesheet" type="text/css" >
-
-        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" >
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.js"></script>
 
         <script type="text/javascript" src="src/wysiwyg.js"></script>
     </head>
     <body>
+        <textarea name="demo" id="demo">
+            
+            <h1><img src="http://code.google.com/p/zfcore/logo" />Welcome to the ZFCore Wysiwyg editor demo!</h1>
 
-        <textarea name="demo" id="demo">Hello World</textarea>
+            <p>We really recommend Firefox as the primary browser for the best editing experience, but of course, it is compatible with latest major browsers.</p>
+            <h3>Got questions or need help?</h3>
+
+            <p>If you have questions or need help, feel free to visit our GitHub page. <a href="http://github.com/MaksSlesarenko/wysiwyg">http://github.com/MaksSlesarenko/wysiwyg</a></p>
+            
+            <h3>Found a bug?</h3>
+
+            <p>If you think you have found a bug, you can use the Tracker to report bugs to the developers. <a href="http://github.com/MaksSlesarenko/wysiwyg">http://github.com/MaksSlesarenko/wysiwyg</a> </p>
+
+        </textarea>
 
         <div id="toolbar">
-            <button class="button left toolbar-button" cmd="bold" status="isBold" title="Bold"><span class="icon icon20"></span></button>
-            <button class="button middle toolbar-button" cmd="italic"  param="italic" status="isItalic" title="Italic"><span class="icon icon114"></span></button>
-            <button class="button right toolbar-button" cmd="underline" param="underline" status="isUnderline" title="Underline"><span class="icon icon187"></span></button>
+            <div class="toolbar-buttonset">
+                <button class="toolbar-button" cmd="bold" status="isBold" title="Bold" primary-icon="gpui-icon gpui-icon20" text="false">B</button>
+                <button class="toolbar-button" cmd="italic"  param="italic" status="isItalic" title="Italic" primary-icon="gpui-icon gpui-icon114" text="false">I</button>
+                <button class="toolbar-button" cmd="underline" param="underline" status="isUnderline" title="Underline" primary-icon="gpui-icon gpui-icon187" text="false">U</button>
+            </div>
         </div>
 
         <style type="text/css">
@@ -37,60 +50,11 @@
         </style>
 
         <script type="text/javascript">
-        	$(function(){
+            $(function(){
                 $('#demo').wysiwyg({
-                    ui: true,
-                    css: "wym.css"
+                    css: "src/frame/default.css"
                 }).wysiwyg('toolbar', '#toolbar');
-
-
-                $('body').append(
-            			$('<button>', {
-            				html: 'hide',
-            				click: function() {$('#demo').wysiwyg('hide')}
-            			}),
-            			$('<button>', {
-            				html: 'show',
-            				click: function() {$('#demo').wysiwyg('show')}
-            			}),
-            			$('<button>', {
-            				html: 'enable',
-            				click: function() {$('#demo').wysiwyg('enable')}
-            			}),
-            			$('<button>', {
-            				html: 'disable',
-            				click: function() {$('#demo').wysiwyg('disable')}
-            			}),
-            			$('<button>', {
-            				html: 'alert content',
-            				click: function() { alert( $('#demo').wysiwyg('html') )}
-            			}),
-            			$('<button>', {
-            				html: 'prompt content',
-            				click: function() {
-            					if (html = prompt('Enter html', '')) {
-            					    $('#demo').wysiwyg('html', html);
-            					}
-            				}
-            			}),
-            			$('<button>', {
-            				html: 'destroy',
-            				click: function() { $('#demo').wysiwyg('destroy') }
-            			}),
-            			$('<button>', {
-            				html: 'clean',
-            				click: function() { $('#demo').wysiwyg('clean') }
-            			}),
-            			$('<button>', {
-            				html: 'Old browser usage',
-            				click: function() {
-            					$('#demo').wysiwyg('hide');
-            					$('#demo').yourBrowserSucks({strict: false});
-            					$('#demo').wysiwyg('show');
-            				}
-            			})
-            		);
-        	});
+            });
         </script>
     </body>
 </html>

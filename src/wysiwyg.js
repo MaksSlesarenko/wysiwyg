@@ -943,7 +943,7 @@
             frameOverlayClass: 'wysiwyg-frame-overlay',
             eventNamespace: 'zfcorewysiwyg',
             resizable: {handles: 's'},
-            ui: false,
+            ui: true,
             autosave: {
                 url: null,
                 enabled: true,
@@ -975,10 +975,22 @@
 
             if (this.options.ui) {
                 $widget.addClass('ui-widget ui-widget-header ui-corner-all');
-                $widget.children('a, button, input').button();
+                $widget.find('a, button, input').each(function(){
+                    
+                    var $this = $(this);
+                    var text = true;
+                    if ('false' == $this.attr('text')) {
+                        text = false;
+                    }
+                    $this.button({'text': text, icons: {primary: $this.attr('primary-icon'), secondary: $this.attr('secondary-icon')}});
+                });
+                $widget.children('.' + this.options.buttonsetClass).buttonset();
+                $widget.find('.' + this.options.dropdownSliderClass).addClass('ui-state-default ui-corner-bottom');
             } else {
                 $widget.removeClass('ui-widget ui-widget-header ui-corner-all');
                 $widget.children('a, button, input').button('disable');
+                $widget.children('.' + this.options.buttonsetClass).buttonset('disable');
+                $widget.find('.' + this.options.dropdownSliderClass).removeClass('ui-state-default ui-corner-bottom');
             }
         },
 
@@ -1080,6 +1092,8 @@
                     _self.editor('exec', $(this).closest('.' + options.colorPickerClass).attr('name'), '#' + color);
                 }
             });
+            
+            this._decorate();
         },
 
 
@@ -1141,12 +1155,13 @@
          *
          */
         options: {
-            ui: false,
+            ui: true,
             buttonClass: 'toolbar-button',
+            buttonsetClass: 'toolbar-buttonset',
             buttonHighlightClass: 'on',
             colorPickerClass: 'toolbar-colorpicker',
             dropdownLabelClass: 'dropdown-label',
-            dropdownIconClass: 'dropdown-icon',
+            dropdownIconClass: 'ui-button-icon-primary',
             dropdownClass: 'dropdown',
             dropdownSliderClass: 'dropdown-slider',
             dropdownActiveClass: 'active',

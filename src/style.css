@@ -38,14 +38,14 @@
 
 /* Dropdown */
 
-.dropdown {
+.toolbar-dropdown {
     float: left;
     position: relative;
 }
-.dropdown > button {
+.toolbar-dropdown > button {
     min-width: 8em;
 }
-.dropdown-slider {
+.toolbar-dropdown-slider {
     display: none;
     
     overflow: hidden;
@@ -74,7 +74,7 @@
     margin-right: 5px;
 }
 
-.dropdown-slider .ui-button {
+.toolbar-dropdown-slider .ui-button {
     border-width: 0 !important;
     width: 100%;
     background: none;

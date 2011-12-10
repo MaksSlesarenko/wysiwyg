@@ -1155,11 +1155,11 @@
             buttonsetClass: 'toolbar-buttonset',
             buttonHighlightClass: 'ui-state-focus',
             colorPickerClass: 'toolbar-colorpicker',
-            dropdownLabelClass: 'dropdown-label',
+            dropdownLabelClass: 'toolbar-dropdown-label',
             dropdownIconClass: 'ui-button-icon-primary',
-            dropdownClass: 'dropdown',
-            dropdownSliderClass: 'dropdown-slider',
-            dropdownActiveClass: 'active',
+            dropdownClass: 'toolbar-dropdown',
+            dropdownSliderClass: 'toolbar-dropdown-slider',
+            dropdownActiveClass: 'toolbar-dropdown-active',
             editor: null
         }
     });

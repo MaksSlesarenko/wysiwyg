@@ -13,11 +13,23 @@
         html {
             font-size: 0.7em;
         }
+        .addthis_toolbox {position: fixed; top: 1em; right: 1em; z-index: 99999; width: 400px;}
         </style>
     </head>
     <body>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style ">
+        <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+        <a class="addthis_button_tweet"></a>
+        <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+        <a class="addthis_counter addthis_pill_style"></a>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4ede2270351e79f2"></script>
+        <!-- AddThis Button END -->
+        
         <div id="tabs">
             <ul>
+                <li><a href="#demos">Demos</a></li>
                 <li><a href="#options">Options</a></li>
                 <li><a href="#methods">Methods</a></li>
             </ul>
@@ -464,20 +476,19 @@
                     </tr>
                 </table>
             </div>
-        </div>
-
-        <div id="demos">
-            <h2>Minimal</h2>
-            <iframe id="minimal" frameborder="0" src="minimal.html" style="width:900px; height: 250px"></iframe>
-
-            <h2>Medium</h2>
-            <iframe id="medium" frameborder="0" src="medium.html" style="width:900px; height: 450px"></iframe>
-
-            <h2>Full</h2>
-            <iframe id="full" frameborder="0" src="full.html" style="width:900px; height: 600px"></iframe>
-            
-            <h2>Theming</h2>
-            <iframe id="theming" frameborder="0" src="theming.html" style="width:900px; height: 600px"></iframe>
+            <div id="demos">
+	            <h2>Minimal</h2>
+	            <iframe id="minimal" frameborder="0" src="minimal.html" style="width:900px; height: 250px"></iframe>
+	
+	            <h2>Medium</h2>
+	            <iframe id="medium" frameborder="0" src="medium.html" style="width:900px; height: 450px"></iframe>
+	
+	            <h2>Full</h2>
+	            <iframe id="full" frameborder="0" src="full.html" style="width:900px; height: 600px"></iframe>
+	            
+	            <h2>Theming</h2>
+	            <iframe id="theming" frameborder="0" src="theming.html" style="width:900px; height: 600px"></iframe>
+	        </div>
         </div>
 
         <script type="text/javascript">

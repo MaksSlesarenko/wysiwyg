@@ -269,13 +269,25 @@
          * @param value
          * @returns
          */
-        _checkStyle: function (node, name, value) {
-            if (node && 'html' != node.tagName.toLowerCase()) {
-                if (value === node.style[name]) {
+        _checkStyle: function (node, property, tag, value) {
+            var tagName = node.tagName.toLowerCase();
+            
+            if (node && 'html' != tagName) {
+                if (value === node.style[property]) {
                     return true;
                 } else {
-                    if (!node.style[name]) {
-                        return this._checkStyle(node.parentNode, name, value);
+                    if (tag && !$.isArray(tag)) {
+                        tag = [tag];
+                    }
+                    if ($.isArray(tag)) {
+                        for (var i = 0; i < tag.length; i++) {
+                            if (tag[i] == tagName) {
+                                return true;
+                            }
+                        }
+                    }
+                    if (!node.style[property]) {
+                        return this._checkStyle(node.parentNode, property, tag, value);
                     }
                 }
             }
@@ -288,7 +300,7 @@
          * @returns boolen
          */
         isBold: function() {
-            return EditorCommandsMap._checkStyle(this.activeNode(), 'fontWeight', 'bold');
+            return EditorCommandsMap._checkStyle(this.activeNode(), 'fontWeight', ['b', 'strong'], 'bold');
         },
 
         /**
@@ -297,7 +309,7 @@
          * @returns boolen
          */
         isItalic: function() {
-            return EditorCommandsMap._checkStyle(this.activeNode(), 'fontStyle', 'italic');
+            return EditorCommandsMap._checkStyle(this.activeNode(), 'fontStyle', ['i', 'em'],'italic');
         },
         
         /**
@@ -306,7 +318,7 @@
          * @returns boolen
          */
         isUnderline: function() {
-            return EditorCommandsMap._checkStyle(this.activeNode(), 'textDecoration', 'underline');
+            return EditorCommandsMap._checkStyle(this.activeNode(), 'textDecoration', 'u', 'underline');
         },
         
         /**
@@ -316,7 +328,7 @@
          * @returns boolen
          */
         isJustify: function(direction) {
-            return EditorCommandsMap._checkStyle(this.activeNode(), 'textAlign', direction.toLowerCase());
+            return EditorCommandsMap._checkStyle(this.activeNode(), 'textAlign', null, direction.toLowerCase());
         }
     };
     
@@ -661,26 +673,6 @@
         },
 
         /**
-         * Is element inline
-         * 
-         * @param string nodeName
-         * @returns {Boolean}
-         */
-        _isInline: function(nodeName) {
-            var inlineList = ["#text", "a", "em", "font", "span", "strong", "u"];
-
-            nodeName = nodeName.toLowerCase();
-
-            for (var i = 0; i < inlineList.length; i++) {
-                if (nodeName == inlineList[i]) {
-                    return true;
-                }
-            }
-            return false;
-        },
-
-
-        /**
          * Widget public API
          *
          * $('element').wysiwyg('methodName', option1, option2, ...)
@@ -780,6 +772,9 @@
                     return selection.anchorNode.parentNode;
                 }
             } else {
+                if (document.selection) {   // Internet Explorer before version 9
+                    return doc.selection.createRange().parentElement();
+                }
                 //throw 'getSelection method not found';
             }
         },
@@ -1051,14 +1046,14 @@
                     //change dropdown label (icon/value)
                     $dynamicDropdown.each(function () {
                         var $this = $(this);
-                        var $activeButton = $this.find('.' + options.buttonHighlightClass);
+                        var $activeButton = $this.children('.' + options.dropdownSliderClass).find('.' + options.buttonHighlightClass);
        
                         var $icon = $this.find('.' + options.dropdownIconClass);
                         var $label = $this.find('.' + options.dropdownLabelClass);
 
                         if ($activeButton.length) {
                             $icon.hide();
-                            $label.show().text($activeButton.text());
+                            $label.show().html($activeButton.text());
                         } else {
                             $icon.show();
                             $label.hide();
@@ -1158,7 +1153,7 @@
             ui: true,
             buttonClass: 'toolbar-button',
             buttonsetClass: 'toolbar-buttonset',
-            buttonHighlightClass: 'on',
+            buttonHighlightClass: 'ui-state-focus',
             colorPickerClass: 'toolbar-colorpicker',
             dropdownLabelClass: 'dropdown-label',
             dropdownIconClass: 'ui-button-icon-primary',

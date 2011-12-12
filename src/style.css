@@ -103,7 +103,7 @@
 .wysiwyg-toolbar button.ui-button-icons-only { width: 8em; } 
 
 /*button text element */
-.wysiwyg-toolbar .ui-button .ui-button-text { line-height: 1.8;  }
+.wysiwyg-toolbar .ui-button .ui-button-text { line-height: 1.7;  }
 .wysiwyg-toolbar .ui-button-text-only .ui-button-text { padding: .5em 1.5em; }
 .wysiwyg-toolbar .ui-button-icon-only .ui-button-text, .wysiwyg-toolbar .ui-button-icons-only .ui-button-text { padding: .5em;}
 .wysiwyg-toolbar .ui-button-text-icon-primary .ui-button-text, .wysiwyg-toolbar .ui-button-text-icons .ui-button-text { padding: .5em 1.5em .5em 3.5em; }

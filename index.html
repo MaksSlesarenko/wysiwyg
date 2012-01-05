@@ -476,27 +476,34 @@
                 </table>
             </div>
             <div id="demos">
-                <h2>Minimal</h2>
+                <h2>Minimal <a href="minimal.html" class="button-new-window" target="_blank">New window</a></h2>
                 <iframe id="minimal" frameborder="0" src="minimal.html" style="width:900px; height: 250px"></iframe>
     
-                <h2>Medium</h2>
+                <h2>Medium <a href="medium.html" class="button-new-window" target="_blank">New window</a></h2>
                 <iframe id="medium" frameborder="0" src="medium.html" style="width:900px; height: 450px"></iframe>
 	
-                <h2>Full</h2>
+                <h2>Full <a href="full.html" class="button-new-window" target="_blank">New window</a></h2>
                 <iframe id="full" frameborder="0" src="full.html" style="width:900px; height: 600px"></iframe>
                 
-                <h2>Wym Mode</h2>
+                <h2>Programmatic Toolbar <a href="programmatic.html" class="button-new-window" target="_blank">New window</a></h2>
+                <iframe id="full" frameborder="0" src="programmatic.html" style="width:900px; height: 600px"></iframe>
+                
+                <h2>Wym Mode <a href="wym.html" class="button-new-window" target="_blank">New window</a></h2>
                    <iframe id="full" frameborder="0" src="wym.html" style="width:900px; height: 450px"></iframe>
                 
-                <h2>Theming</h2>
+                <h2>Theming <a href="theming.html" class="button-new-window" target="_blank">New window</a></h2>
                 <iframe id="theming" frameborder="0" src="theming.html" style="width:900px; height: 600px"></iframe>
             </div>
         </div>
 
         <script type="text/javascript">
-        	$(function(){
+            $(function(){
                 $('#tabs').tabs();
-        	});
+            });
+            $('.button-new-window').button({
+                text:false,
+                icons: {primary: 'ui-icon-newwin'}
+            }).css('fontSize', '10px')
         </script>
     </body>
 </html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+        <meta http-equiv="Content-Language" content="en-US" >
+        <title>Jquery Wysiwyg</title>
+
+        <link href="http://maksslesarenko.github.com/google-plus-ui/css/jquery-ui-1.8.16.google.plus.css" media="screen" rel="stylesheet" type="text/css" title="theme"/>
+
+        <link href="src/buttons.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="src/style.css" media="screen" rel="stylesheet" type="text/css" >
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.js"></script>
+
+        <script type="text/javascript" src="src/wysiwyg.js"></script>
+    </head>
+    <body>
+
+        <textarea name="demo" id="demo">
+            
+            <h1><img src="http://code.google.com/p/zfcore/logo" />Welcome to the ZFCore Wysiwyg editor demo!</h1>
+
+            <p>We really recommend Firefox as the primary browser for the best editing experience, but of course, it is compatible with latest major browsers.</p>
+            <h3>Got questions or need help?</h3>
+
+            <p>If you have questions or need help, feel free to visit our GitHub page. <a href="http://github.com/MaksSlesarenko/wysiwyg">http://github.com/MaksSlesarenko/wysiwyg</a></p>
+            
+            <h3>Found a bug?</h3>
+
+            <p>If you think you have found a bug, you can use the Tracker to report bugs to the developers. <a href="http://github.com/MaksSlesarenko/wysiwyg">http://github.com/MaksSlesarenko/wysiwyg</a> </p>
+
+        </textarea>
+
+        <style type="text/css">
+        #demo {
+            width: 800px;
+            height: 400px;
+            display:block;
+        }
+        html {
+            font-size: 0.6em;
+        }
+        </style>
+
+        <script type="text/javascript">
+            $(function(){
+                var toolbar = $('<div>').wysiwygToolbar({
+                    ui: true, 
+                    buttons: [
+                         [
+                             {
+                                 status: "isBold",
+                                 title: "Bold",
+                                 'primary-icon': "gpui-icon gpui-icon20",
+                                 cmd: "bold",
+	                             param: true
+                             },
+                             {
+                                 status: "isItalic",
+                                 title: "Italic",
+                                 'primary-icon': "gpui-icon gpui-icon114",
+                                 cmd: "italic",
+                                 param: true
+                             },
+                             {
+                                 status: "isUnderline",
+                                 title: "Underline",
+                                 'primary-icon': "gpui-icon gpui-icon187",
+                                 cmd: "underline",
+                                 param: true
+                             }
+                         ],
+                         [
+                            {
+                                title: "Indent",
+                                'primary-icon': "gpui-icon gpui-icon204",
+                                cmd: "indent"
+                            },
+                            {
+                                title: "Outdent",
+                                'primary-icon': "gpui-icon gpui-icon205",
+                                cmd: "outdent"
+                            }
+                        ],
+                        [
+                           {
+                               status: "isJustify",
+                               title: "Justify left",
+                               'primary-icon': "gpui-icon gpui-icon138",
+                               cmd: "justify",
+                               param: 'left'
+                           },
+                           {
+                               status: "isJustify",
+                               title: "Justify center",
+                               'primary-icon': "gpui-icon gpui-icon140",
+                               cmd: "justify",
+                               param: 'center'
+                           },
+                           {
+                               status: "isJustify",
+                               title: "Justify right",
+                               'primary-icon': "gpui-icon gpui-icon139",
+                               cmd: "justify",
+                               param: 'right'
+                           }
+                       ],
+                       [
+                          {
+                              title: "Insert link",
+                              'primary-icon': "gpui-icon gpui-icon119",
+                              cmd: "link",
+                              param: true
+                          },
+                          {
+                              title: "Remove link",
+                              'primary-icon': "gpui-icon gpui-icon25",
+                              cmd: "unlink"
+                          }
+                      ],
+                      {
+                          title: "Insert image",
+                          'primary-icon': "gpui-icon gpui-icon148",
+                          cmd: "image"
+                      },
+                      {
+                          title: "Remove formatting",
+                          'primary-icon': "gpui-icon gpui-icon83",
+                          cmd: "removeFormat"
+                      }
+                    ]
+                });
+                
+                var toolbar2 = $('<div>').wysiwygToolbar({
+                    ui: true, 
+                    buttons: [
+                         [
+                             {
+                                 title: "Insert <p>",
+                                 cmd: "format",
+                                 html: 'P'
+                             },
+                             {
+                                 title: "Insert quotes",
+                                 cmd: "quote",
+                                 html: '&quot;'
+                             },
+                             {
+                                 title: "Insert <br>",
+                                 cmd: "tag",
+                                 param: 'br',
+                                 html: 'BR'
+                             }
+                         ],
+                         {
+                             title: "Format block",
+                             'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+                             html: "Format",
+                             slider: '<button class="toolbar-button"  cmd="format" param="h1" title="Insert &lt;h1&gt;">Heading 1</button>\
+                                      <button class="toolbar-button"  cmd="format" param="h2" title="Insert &lt;h2&gt;">Heading 2</button>\
+                                      <button class="toolbar-button"  cmd="format" param="h3" title="Insert &lt;h3&gt;">Heading 3</button>\
+                                      <button class="toolbar-button"  cmd="format" param="h4" title="Insert &lt;h4&gt;">Heading 4</button>\
+                                      <button class="toolbar-button"  cmd="format" param="h5" title="Insert &lt;h5&gt;">Heading 5</button>\
+                                      <button class="toolbar-button"  cmd="format" param="h6" title="Insert &lt;h6&gt;">Heading 6</button>\
+                                      <button class="toolbar-button"  cmd="format" param="pre" title="Insert &lt;pre&gt;">Code</button>\
+                                      <button class="toolbar-button"  cmd="format" param="blockquote" title="Insert &lt;blockquote&gt;">Blockquote</button>' 
+                        },
+                        {
+                            title: "Change font face",
+                            'primary-icon': "ui-icon gpui-icon gpui-icon93",
+                            'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+                            html: '<span class="toolbar-dropdown-label"></span>',
+                            slider: '<button class="toolbar-button"  cmd="fontName" param="serif" status="isFontFace" style="font-family: serif">Serif</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="sans-serif" status="isFontFace" style="font-family: sans-serif">Sans Serif</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="monospace" status="isFontFace" style="font-family: monospace">Monospace</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Arial" status="isFontFace" style="font-family: Arial">Arial</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Helvetica" status="isFontFace" style="font-family: Helvetica">Helvetica</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Palatino" status="isFontFace" style="font-family: Palatino">Palatino</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Garamond" status="isFontFace" style="font-family: Garamond">Garamond</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Bookman" status="isFontFace" style="font-family: Bookman">Bookman</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Avant Garde" status="isFontFace" style="font-family: Avant Garde">Avant Garde</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Verdana" status="isFontFace" style="font-family: Verdana">Verdana</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Georgia" status="isFontFace" style="font-family: Georgia">Georgia</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Comic Sans MS" status="isFontFace" style="font-family: Comic Sans MS">Comic Sans MS</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Trebuchet MS" status="isFontFace" style="font-family: Trebuchet MS">Trebuchet MS</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Arial Black" status="isFontFace" style="font-family: Arial Black">Arial Black</button>\
+                                <button class="toolbar-button"  cmd="fontName" param="Impact" status="isFontFace" style="font-family: Impact">Impact</button>'
+                       },
+                       {
+                           title: "Change font size",
+                           'primary-icon': "ui-icon gpui-icon gpui-icon94",
+                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+                           html: '<span class="toolbar-dropdown-label"></span>',
+                           slider: {
+                               style: "width:200px",
+                               html: '<button class="toolbar-button"  cmd="fontSize" param="1" status="isFontSize"><span style="font-size: x-small">The smallest</span></button>\
+                               <button class="toolbar-button"  cmd="fontSize" param="2" status="isFontSize"><span style="font-size: small">Small</span></button>\
+                               <button class="toolbar-button"  cmd="fontSize" param="3" status="isFontSize"><span style="font-size: medium">Medium</span></button>\
+                               <button class="toolbar-button"  cmd="fontSize" param="4" status="isFontSize"><span style="font-size: large">Large</span></button>\
+                               <button class="toolbar-button"  cmd="fontSize" param="5" status="isFontSize"><span style="font-size: x-large">Large X</span></button>\
+                               <button class="toolbar-button"  cmd="fontSize" param="6" status="isFontSize"><span style="font-size: xx-large">Large XX</span></button>'
+                           }
+                       },
+                       {
+                           title: "Change font background color",
+                           'primary-icon': "ui-icon gpui-icon gpui-icon203",
+                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+                           html: '<span class="toolbar-dropdown-label"></span>',
+                           slider: {
+                                style: "width:213px; padding: 10px",
+                                html: '<div class="toolbar-colorpicker" name="hiliteColor"></div>'
+                           }
+                       },
+                       {
+                           title: "Change font color",
+                           'primary-icon': "ui-icon gpui-icon gpui-icon202",
+                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+                           slider: {
+                               style: "width:213px; padding: 10px",
+                               html: '<div class="toolbar-colorpicker" name="foreColor"></div>'
+                           }
+                       }
+                    ]
+                });
+
+
+                $('#demo').wysiwyg({
+                    ui: true,
+                    css: "src/frame/default.css"
+                }).wysiwyg('toolbar', toolbar)
+                  .wysiwyg('toolbar', toolbar2)
+                  .wysiwyg('commands', {
+                    link: function () {
+                        var selected = this.selected();
+
+                        if (selected) {
+                            var url = prompt('Enter url', 'http://');
+
+                            if (url) {
+                                this._exec('createLink', url);
+                            } else {
+                                this._exec('unlink');
+                            }
+                        }
+                    },
+                    image: function() {
+                	    var url = prompt('Insert image url', '');
+                	    if (url) {
+                            $('#demo').wysiwyg('exec', 'inserthtml', '<img src="' + url + '"/>');
+                	    }
+                    }
+                });
+
+                $('body').append(
+        	        $('<h2>', {html: 'API Demonstration', css: {marginTop: '30px'}}),
+        			$('<button>', {
+        				html: 'hide',
+        				click: function() {$('#demo').wysiwyg('hide')}
+        			}),
+        			$('<button>', {
+        				html: 'show',
+        				click: function() {$('#demo').wysiwyg('show')}
+        			}),
+        			$('<button>', {
+        				html: 'enable',
+        				click: function() {$('#demo').wysiwyg('enable')}
+        			}),
+        			$('<button>', {
+        				html: 'disable',
+        				click: function() {$('#demo').wysiwyg('disable')}
+        			}),
+        			$('<button>', {
+        				html: 'alert content',
+        				click: function() { alert( $('#demo').wysiwyg('html') )}
+        			}),
+        			$('<button>', {
+        				html: 'prompt content',
+        				click: function() {
+        					if (html = prompt('Enter html', '')) {
+        					    $('#demo').wysiwyg('html', html);
+        					}
+        				}
+        			}),
+        			$('<button>', {
+        				html: 'destroy',
+        				click: function() { $('#demo').wysiwyg('destroy') }
+        			}),
+        			$('<button>', {
+        				html: 'clean',
+        				click: function() { $('#demo').wysiwyg('clean') }
+        			}),
+        			$('<button>', {
+        				html: 'Old browser usage',
+        				click: function() {
+        					$('#demo').wysiwyg('hide')
+        					$('#demo').yourBrowserSucks({strict: false})
+        					$('#demo').wysiwyg('show')
+        				}
+        			})
+        		);
+        	});
+        </script>
+    </body>
+</html>

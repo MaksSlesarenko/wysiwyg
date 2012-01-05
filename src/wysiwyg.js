@@ -907,14 +907,20 @@
                 if (typeof(toolbar) == 'string') {
                     toolbar = $(toolbar).wysiwygToolbar();
                 }
-                $widget.prepend(
-                    $('<li>').addClass(this.options.toolbarWrapperClass).append(toolbar)
-                );
+                var $frame = $widget.children('li.' + this.options.frameWrapperClass);
+                if ($frame.length) {
+                    $frame.before(
+                        $('<li>').addClass(this.options.toolbarWrapperClass).append(toolbar)
+                    );
+                } else {
+                   $widget.append(
+                        $('<li>').addClass(this.options.toolbarWrapperClass).append(toolbar)
+                    );
+                }
                 
                 toolbar.wysiwygToolbar('option' , 'editor', this);
                 
-                var frame = $widget.children('li.' + this.options.frameWrapperClass);
-                    frame.height(frame.height() - toolbar.height());
+                $frame.height($frame.height() - toolbar.height());
 
             } else {
                 return $widget.children('li.' + this.options.toolbarWrapperClass).children();
@@ -974,8 +980,11 @@
                     
                     var $this = $(this);
                     var text = true;
-                    if ('false' == $this.attr('text')) {
+                    if ('false' == $this.attr('text') || '' == $this.html() || '&nbsp;' == $this.html()) {
                         text = false;
+                        $this.html('&nbsp;');
+                    } else if ('' == $this.text()) {
+                        $this.append('&nbsp;');
                     }
                     $this.button({'text': text, icons: {primary: $this.attr('primary-icon'), secondary: $this.attr('secondary-icon')}});
                 });
@@ -1002,12 +1011,53 @@
         },
         
         /**
+         * Create button from options
+         * 
+         * @param options
+         * @returns jQuery
+         */
+        _createButton: function(options) {
+            var $slider = null;
+            if (options.slider) {
+                if ('object' == typeof(options.slider)) {
+                    $slider = $('<div>', options.slider);
+                } else {
+                    $slider = $('<div>').html(options.slider);
+                }
+                $slider.addClass(this.options.dropdownSliderClass);
+                options.slider = false;
+            }
+            var $button = $('<button>', options).addClass(this.options.buttonClass);
+            if (false == options.text) {
+                $button.attr('text', 'false');
+            }
+            if ($slider) {
+                $button = $('<div>', {'class': this.options.dropdownClass}).append($button).append($slider);
+            }
+            return $button;
+        },
+        
+        /**
          * Create widget
          */
         _create: function() {
             var $el = $(this.element);
             var _self = this;
             var options = _self.options;
+            
+            if (options.buttons) {
+                for (var i in options.buttons) {
+                    if (options.buttons[i].length) {
+                        var $button = $('<div>', {'class': options.buttonsetClass});
+                        for (var j in options.buttons[i]) {
+                            $button.append(_self._createButton(options.buttons[i][j]));
+                        }
+                    } else {
+                        $button = _self._createButton(options.buttons[i]);
+                    }
+                    $el.append($button);
+                }
+            }
             
             $el.children().data('toolbar', this);
             var buttons = $el.find('.' + options.buttonClass).data('toolbar', this).click(function(){
@@ -1150,6 +1200,7 @@
          *
          */
         options: {
+            buttons: null,
             ui: true,
             buttonClass: 'toolbar-button',
             buttonsetClass: 'toolbar-buttonset',

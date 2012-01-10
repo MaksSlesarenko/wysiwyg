@@ -332,6 +332,372 @@
         }
     };
     
+    var buttonsMap = {
+        _self: this,
+        
+        b: {
+            status: "isBold",
+            title: "Bold",
+            'primary-icon': "gpui-icon gpui-icon20",
+            cmd: "bold",
+            param: true
+        },
+        i: {
+            status: "isItalic",
+            title: "Italic",
+            'primary-icon': "gpui-icon gpui-icon114",
+            cmd: "italic",
+            param: true
+        },
+        u: {
+            status: "isUnderline",
+            title: "Underline",
+            'primary-icon': "gpui-icon gpui-icon187",
+            cmd: "underline",
+            param: true
+        },
+        indent: {
+            title: "Indent",
+            'primary-icon': "gpui-icon gpui-icon204",
+            cmd: "indent"
+        },
+        outdent: {
+            title: "Outdent",
+            'primary-icon': "gpui-icon gpui-icon205",
+            cmd: "outdent"
+        },
+        justifyLeft: {
+            status: "isJustify",
+            title: "Justify left",
+            'primary-icon': "gpui-icon gpui-icon138",
+            cmd: "justify",
+            param: 'left'
+        },
+        justifyCenter: {
+            status: "isJustify",
+            title: "Justify center",
+            'primary-icon': "gpui-icon gpui-icon140",
+            cmd: "justify",
+            param: 'center'
+        },
+        justifyRight: {
+            status: "isJustify",
+            title: "Justify right",
+            'primary-icon': "gpui-icon gpui-icon139",
+            cmd: "justify",
+            param: 'right'
+        },
+        link: {
+            title: "Insert link",
+            'primary-icon': "gpui-icon gpui-icon119",
+            cmd: "link",
+            param: true
+        },
+        unlink: {
+            title: "Remove link",
+            'primary-icon': "gpui-icon gpui-icon25",
+            cmd: "unlink"
+        },
+        image: {
+            title: "Insert image",
+            'primary-icon': "gpui-icon gpui-icon148",
+            cmd: "image"
+        },
+        removeFormat: {
+            title: "Remove formatting",
+            'primary-icon': "gpui-icon gpui-icon83",
+            cmd: "removeFormat"
+        },
+        p: {
+            title: "Insert <p>",
+            cmd: "format",
+            html: 'P'
+        },
+        quote: {
+            title: "Insert quotes",
+            cmd: "quote",
+            html: '&quot;'
+        },
+        br: {
+            title: "Insert <br>",
+            cmd: "tag",
+            param: 'br',
+            html: 'BR'
+        },
+        heading1: {
+            cmd: "format", 
+            param: "h1", 
+            title: "Insert &lt;h1&gt;",
+            html: "Heading 1"
+        },
+        heading2: {
+            cmd: "format", 
+            param: "h2", 
+            title: "Insert &lt;h2&gt;",
+            html: "Heading 2"
+        },
+        heading3: {
+            cmd: "format", 
+            param: "h3", 
+            title: "Insert &lt;h3&gt;",
+            html: "Heading 3"
+        },
+        heading4: {
+            cmd: "format", 
+            param: "h4",
+            title: "Insert &lt;h4&gt;",
+            html: "Heading 4"
+        },
+        heading5: {
+            cmd: "format", 
+            param: "h5", 
+            title: "Insert &lt;h5&gt;",
+            html: "Heading 5"
+        },
+        heading6: {
+            cmd: "format", 
+            param: "h6", 
+            title: "Insert &lt;h6&gt;",
+            html: "Heading 6"
+        },
+        pre: {
+            cmd: "format",
+            param: "pre", 
+            title: "Insert &lt;pre&gt;",
+            html: "Code"
+        },
+        blockquote: {
+            cmd: "format",
+            param: "blockquote", 
+            title: "Insert &lt;blockquote&gt;",
+            html: "Blockquote"
+        },
+        fontFaceSerif: {
+            cmd: "fontName",
+            param: "serif",
+            status: "isFontFace",
+            style: "font-family: serif",
+            html: "Serif"
+        },
+        fontFaceSansSerif: {
+            cmd: "fontName",
+            param: "sans-serif",
+            status: "isFontFace",
+            style: "font-family: sans-serif",
+            html: "Sans Serif"
+        },
+        fontFaceMonospace: {
+            cmd: "fontName",
+            param: "monospace",
+            status: "isFontFace",
+            style: "font-family: monospace",
+            html: "Monospace"
+        },
+        fontFaceArial: {
+            cmd: "fontName", 
+            param: "Arial",
+            status: "isFontFace",
+            style: "font-family: Arial",
+            html: "Arial"
+        },
+        fontFaceHelvetica: {
+            cmd: "fontName",
+            param: "Helvetica",
+            status: "isFontFace",
+            style: "font-family: Helvetica",
+            html: "Helvetica"
+        },
+        fontFacePalatino: {
+            cmd: "fontName",
+            param: "Palatino",
+            status: "isFontFace",
+            style: "font-family: Palatino",
+            html: "Palatino"
+        },
+        fontFaceGaramond: {
+            cmd: "fontName",
+            param: "Garamond",
+            status: "isFontFace",
+            style: "font-family: Garamond",
+            html: "Garamond"
+        },
+        fontFaceBookman: {
+            cmd: "fontName",
+            param: "Bookman",
+            status: "isFontFace",
+            style: "font-family: Bookman",
+            html: "Bookman"
+        },
+        fontFaceAvantGarde: {
+            cmd: "fontName",
+            param: "Avant Garde",
+            status: "isFontFace",
+            style: "font-family: Avant Garde",
+            html: "Avant Garde"
+        },
+        fontFaceVerdana: {
+            cmd: "fontName",
+            param: "Verdana",
+            status: "isFontFace",
+            style: "font-family: Verdana",
+            html: "Verdana"
+        },
+        fontFaceGeorgia: {
+            cmd: "fontName",
+            param: "Georgia",
+            status: "isFontFace",
+            style: "font-family: Georgia",
+            html: "Georgia"
+        },
+        fontFaceComicSansMS: {
+            cmd: "fontName",
+            param: "Comic Sans MS",
+            status: "isFontFace",
+            style: "font-family: Comic Sans MS",
+            html: "Comic Sans MS"
+        },
+        fontFaceTrebuchetMS: {
+            cmd: "fontName", 
+            param: "Trebuchet MS",
+            status: "isFontFace", 
+            style: "font-family: Trebuchet MS",
+            html: "Trebuchet MS"
+        },
+        fontFaceArialBlack: {
+            cmd: "fontName",
+            param: "Arial Black",
+            status: "isFontFace",
+            style: "font-family: Arial Black",
+            html: "Arial Black"
+        },
+        fontFaceImpact: {
+            cmd: "fontName",
+            param: "Impact",
+            status: "isFontFace",
+            style: "font-family: Impact",
+            html: "Impact"
+        },
+        fontSize1: {
+            cmd: "fontSize",
+            param: "1",
+            status: "isFontSize",
+            html: '<span style="font-size: x-small">The smallest</span>'
+        },
+        fontSize2: {
+            cmd: "fontSize",
+            param: "2",
+            status: "isFontSize",
+            html: '<span style="font-size: small">Small</span>'
+        },
+        fontSize3: {
+            cmd: "fontSize",
+            param: "3",
+            status: "isFontSize",
+            html: '<span style="font-size: medium">Medium</span>'
+        },
+        fontSize4: {
+            cmd: "fontSize",
+            param: "4",
+            status: "isFontSize",
+            html: '<span style="font-size: large">Large</span>'
+        },
+        fontSize5: {
+            cmd: "fontSize",
+            param: "5",
+            status: "isFontSize",
+            html: '<span style="font-size: x-large">Large X</span>'
+        },
+        fontSize6: {
+            cmd: "fontSize",
+            param: "6",
+            status: "isFontSize",
+            html: '<span style="font-size: xx-large">Large XX</span>'
+        }
+    };
+    
+    $.extend(buttonsMap, {
+        formatBlock: {
+            title: "Format block",
+            'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+            html: "Format",
+            slider:  {
+                buttons: [
+                    buttonsMap.heading1,
+                    buttonsMap.heading2,
+                    buttonsMap.heading3,
+                    buttonsMap.heading4,
+                    buttonsMap.heading5,
+                    buttonsMap.heading6,
+                    buttonsMap.pre,
+                    buttonsMap.blockquote
+                ]
+            } 
+        },
+        fontFace: {
+           title: "Change font face",
+           'primary-icon': "ui-icon gpui-icon gpui-icon93",
+           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+           html: '<span class="toolbar-dropdown-label"></span>',
+           style: "min-width:120px",
+           slider: {
+               buttons: [
+                   buttonsMap.fontFaceSerif,
+                   buttonsMap.fontFaceSansSerif,
+                   buttonsMap.fontFaceMonospace,
+                   buttonsMap.fontFaceArial,
+                   buttonsMap.fontFaceHelvetica,
+                   buttonsMap.fontFacePalatino,
+                   buttonsMap.fontFaceGaramond,
+                   buttonsMap.fontFaceBookman,
+                   buttonsMap.fontFaceAvantGarde,
+                   buttonsMap.fontFaceVerdana,
+                   buttonsMap.fontFaceGeorgia,
+                   buttonsMap.fontFaceComicSansMS,
+                   buttonsMap.fontFaceTrebuchetMS,
+                   buttonsMap.fontFaceArialBlack,
+                   buttonsMap.fontFaceImpact
+               ]
+           }
+       },
+       fontSize: {
+           title: "Change font size",
+           'primary-icon': "ui-icon gpui-icon gpui-icon94",
+           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+           html: '<span class="toolbar-dropdown-label"></span>',
+           style: "min-width:120px",
+           slider: {
+               style: "width:200px",
+               buttons: [
+                   buttonsMap.fontSize1,
+                   buttonsMap.fontSize2,
+                   buttonsMap.fontSize3,
+                   buttonsMap.fontSize4,
+                   buttonsMap.fontSize5,
+                   buttonsMap.fontSize6
+               ]
+           }
+       },
+       hiliteColor: {
+           title: "Change font background color",
+           'primary-icon': "ui-icon gpui-icon gpui-icon203",
+           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+           html: '<span class="toolbar-dropdown-label"></span>',
+           slider: {
+               style: "width:213px; padding: 10px",
+               html: '<div class="toolbar-colorpicker" name="hiliteColor"></div>'
+           }
+       },
+       foreColor: {
+           title: "Change font color",
+           'primary-icon': "ui-icon gpui-icon gpui-icon202",
+           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
+           slider: {
+               style: "width:213px; padding: 10px",
+               html: '<div class="toolbar-colorpicker" name="foreColor"></div>'
+           }
+       }
+    });
+    
     /**
      * Wysiwyg widget
      */
@@ -718,7 +1084,7 @@
         clean: function() {
             var html = this.html();
 
-            html = html.replace(/[\t]*/g, ''); 
+            html = html.replace(/[    ]*/g, ''); 
             html = html.replace(/[\r\n]*/g, ''); 
             html = html.replace(/\n\s*\n/g, "\n"); 
             html = html.replace(/^[\s\n]*/, '');
@@ -1017,22 +1383,43 @@
          * @returns jQuery
          */
         _createButton: function(options) {
-            var $slider = null;
-            if (options.slider) {
-                if ('object' == typeof(options.slider)) {
-                    $slider = $('<div>', options.slider);
-                } else {
-                    $slider = $('<div>').html(options.slider);
+            var $button;
+            if (options.length) {
+                $button = $('<div>', {'class': this.options.buttonsetClass});
+                for (var j in options) {
+                    $button.append(this._createButton(options[j]));
                 }
-                $slider.addClass(this.options.dropdownSliderClass);
-                options.slider = false;
-            }
-            var $button = $('<button>', options).addClass(this.options.buttonClass);
-            if (false == options.text) {
-                $button.attr('text', 'false');
-            }
-            if ($slider) {
-                $button = $('<div>', {'class': this.options.dropdownClass}).append($button).append($slider);
+            } else {
+                var $slider = null;
+                if (options.slider) {
+                    var $sliderButtons = null;
+                    if ('object' == typeof(options.slider)) {
+                        if (options.slider.buttons) {
+                            $slider = this._createButton(options.slider.buttons);
+                            options.slider.buttons = undefined;
+                            
+                            $slider.removeClass(this.options.buttonsetClass)
+                                   .attr(options.slider);
+                        } else {
+                            $slider = $('<div>', options.slider);
+                        }
+                    } else {
+                        $slider = $('<div>').html(options.slider);
+                    }
+                    if ($sliderButtons) {
+                        $slider.append($sliderButtons);
+                    }
+                    $slider.addClass(this.options.dropdownSliderClass);
+                    options.slider = false;
+                }
+                $button = $('<button>', options).addClass(this.options.buttonClass);
+                
+                if (false == options.text) {
+                    $button.attr('text', 'false');
+                }
+                if ($slider) {
+                    $button = $('<div>', {'class': this.options.dropdownClass}).append($button).append($slider);
+                }
             }
             return $button;
         },
@@ -1047,14 +1434,7 @@
             
             if (options.buttons) {
                 for (var i in options.buttons) {
-                    if (options.buttons[i].length) {
-                        var $button = $('<div>', {'class': options.buttonsetClass});
-                        for (var j in options.buttons[i]) {
-                            $button.append(_self._createButton(options.buttons[i][j]));
-                        }
-                    } else {
-                        $button = _self._createButton(options.buttons[i]);
-                    }
+                    $button = _self._createButton(options.buttons[i]);
                     $el.append($button);
                 }
             }
@@ -1070,9 +1450,9 @@
                 if (!action) {
                     action = 'exec';
                 }
-                if ('undefined' === typeof(param)) {
-                    //param = cmd;
-                }
+                //if ('undefined' === typeof(param)) {
+                //    param = cmd;
+                //}
                 return _self.editor(action, cmd, param);
             });
             
@@ -1520,4 +1900,8 @@
                        </table>'
         }
     });
+    
+    $.zfcore.buttons  = buttonsMap;
+    $.zfcore.events   = EditorEventsMap;
+    $.zfcore.commands = EditorCommandsMap;
 })(jQuery);

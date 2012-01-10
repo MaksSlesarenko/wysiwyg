@@ -47,179 +47,65 @@
                 var toolbar = $('<div>').wysiwygToolbar({
                     ui: true, 
                     buttons: [
-                         [
-                             {
-                                 status: "isBold",
-                                 title: "Bold",
-                                 'primary-icon': "gpui-icon gpui-icon20",
-                                 cmd: "bold",
-	                             param: true
-                             },
-                             {
-                                 status: "isItalic",
-                                 title: "Italic",
-                                 'primary-icon': "gpui-icon gpui-icon114",
-                                 cmd: "italic",
-                                 param: true
-                             },
-                             {
-                                 status: "isUnderline",
-                                 title: "Underline",
-                                 'primary-icon': "gpui-icon gpui-icon187",
-                                 cmd: "underline",
-                                 param: true
-                             }
-                         ],
-                         [
-                            {
-                                title: "Indent",
-                                'primary-icon': "gpui-icon gpui-icon204",
-                                cmd: "indent"
-                            },
-                            {
-                                title: "Outdent",
-                                'primary-icon': "gpui-icon gpui-icon205",
-                                cmd: "outdent"
-                            }
+                        [
+                            $.zfcore.buttons.b,
+                            /*{
+                                status: "isBold",
+                                title: "Bold",
+                                'primary-icon': "gpui-icon gpui-icon20",
+                                cmd: "bold",
+                                param: true
+                            },*/
+                            $.zfcore.buttons.i,
+                            $.zfcore.buttons.u
                         ],
                         [
-                           {
-                               status: "isJustify",
-                               title: "Justify left",
-                               'primary-icon': "gpui-icon gpui-icon138",
-                               cmd: "justify",
-                               param: 'left'
-                           },
-                           {
-                               status: "isJustify",
-                               title: "Justify center",
-                               'primary-icon': "gpui-icon gpui-icon140",
-                               cmd: "justify",
-                               param: 'center'
-                           },
-                           {
-                               status: "isJustify",
-                               title: "Justify right",
-                               'primary-icon': "gpui-icon gpui-icon139",
-                               cmd: "justify",
-                               param: 'right'
-                           }
-                       ],
-                       [
-                          {
-                              title: "Insert link",
-                              'primary-icon': "gpui-icon gpui-icon119",
-                              cmd: "link",
-                              param: true
-                          },
-                          {
-                              title: "Remove link",
-                              'primary-icon': "gpui-icon gpui-icon25",
-                              cmd: "unlink"
-                          }
-                      ],
-                      {
-                          title: "Insert image",
-                          'primary-icon': "gpui-icon gpui-icon148",
-                          cmd: "image"
-                      },
-                      {
-                          title: "Remove formatting",
-                          'primary-icon': "gpui-icon gpui-icon83",
-                          cmd: "removeFormat"
-                      }
+                            $.zfcore.buttons.indent,
+                            $.zfcore.buttons.outdent,
+                        ],
+                        [
+                           $.zfcore.buttons.justifyLeft,
+                           $.zfcore.buttons.justifyCenter,
+                           $.zfcore.buttons.justifyRight,
+                        ],
+                        [
+                            $.zfcore.buttons.link,
+                            $.zfcore.buttons.unlink,
+                        ],
+                        $.zfcore.buttons.image,
+                        $.zfcore.buttons.removeFormat
                     ]
                 });
                 
                 var toolbar2 = $('<div>').wysiwygToolbar({
                     ui: true, 
                     buttons: [
-                         [
-                             {
-                                 title: "Insert <p>",
-                                 cmd: "format",
-                                 html: 'P'
-                             },
-                             {
-                                 title: "Insert quotes",
-                                 cmd: "quote",
-                                 html: '&quot;'
-                             },
-                             {
-                                 title: "Insert <br>",
-                                 cmd: "tag",
-                                 param: 'br',
-                                 html: 'BR'
-                             }
-                         ],
-                         {
-                             title: "Format block",
-                             'secondary-icon': "ui-icon ui-icon-triangle-1-s",
-                             html: "Format",
-                             slider: '<button class="toolbar-button"  cmd="format" param="h1" title="Insert &lt;h1&gt;">Heading 1</button>\
-                                      <button class="toolbar-button"  cmd="format" param="h2" title="Insert &lt;h2&gt;">Heading 2</button>\
-                                      <button class="toolbar-button"  cmd="format" param="h3" title="Insert &lt;h3&gt;">Heading 3</button>\
-                                      <button class="toolbar-button"  cmd="format" param="h4" title="Insert &lt;h4&gt;">Heading 4</button>\
-                                      <button class="toolbar-button"  cmd="format" param="h5" title="Insert &lt;h5&gt;">Heading 5</button>\
-                                      <button class="toolbar-button"  cmd="format" param="h6" title="Insert &lt;h6&gt;">Heading 6</button>\
-                                      <button class="toolbar-button"  cmd="format" param="pre" title="Insert &lt;pre&gt;">Code</button>\
-                                      <button class="toolbar-button"  cmd="format" param="blockquote" title="Insert &lt;blockquote&gt;">Blockquote</button>' 
-                        },
+                        [
+                            $.zfcore.buttons.p,
+                            $.zfcore.buttons.quote,
+                            $.zfcore.buttons.br,
+                        ],
+                        $.zfcore.buttons.formatBlock,
+                        $.zfcore.buttons.fontFace,
+                        //$.zfcore.buttons.fontSize,
                         {
-                            title: "Change font face",
-                            'primary-icon': "ui-icon gpui-icon gpui-icon93",
+                            title: "Change font size",
+                            'primary-icon': "ui-icon gpui-icon gpui-icon94",
                             'secondary-icon': "ui-icon ui-icon-triangle-1-s",
                             html: '<span class="toolbar-dropdown-label"></span>',
-                            slider: '<button class="toolbar-button"  cmd="fontName" param="serif" status="isFontFace" style="font-family: serif">Serif</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="sans-serif" status="isFontFace" style="font-family: sans-serif">Sans Serif</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="monospace" status="isFontFace" style="font-family: monospace">Monospace</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Arial" status="isFontFace" style="font-family: Arial">Arial</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Helvetica" status="isFontFace" style="font-family: Helvetica">Helvetica</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Palatino" status="isFontFace" style="font-family: Palatino">Palatino</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Garamond" status="isFontFace" style="font-family: Garamond">Garamond</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Bookman" status="isFontFace" style="font-family: Bookman">Bookman</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Avant Garde" status="isFontFace" style="font-family: Avant Garde">Avant Garde</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Verdana" status="isFontFace" style="font-family: Verdana">Verdana</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Georgia" status="isFontFace" style="font-family: Georgia">Georgia</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Comic Sans MS" status="isFontFace" style="font-family: Comic Sans MS">Comic Sans MS</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Trebuchet MS" status="isFontFace" style="font-family: Trebuchet MS">Trebuchet MS</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Arial Black" status="isFontFace" style="font-family: Arial Black">Arial Black</button>\
-                                <button class="toolbar-button"  cmd="fontName" param="Impact" status="isFontFace" style="font-family: Impact">Impact</button>'
-                       },
-                       {
-                           title: "Change font size",
-                           'primary-icon': "ui-icon gpui-icon gpui-icon94",
-                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
-                           html: '<span class="toolbar-dropdown-label"></span>',
-                           slider: {
-                               style: "width:200px",
-                               html: '<button class="toolbar-button"  cmd="fontSize" param="1" status="isFontSize"><span style="font-size: x-small">The smallest</span></button>\
-                               <button class="toolbar-button"  cmd="fontSize" param="2" status="isFontSize"><span style="font-size: small">Small</span></button>\
-                               <button class="toolbar-button"  cmd="fontSize" param="3" status="isFontSize"><span style="font-size: medium">Medium</span></button>\
-                               <button class="toolbar-button"  cmd="fontSize" param="4" status="isFontSize"><span style="font-size: large">Large</span></button>\
-                               <button class="toolbar-button"  cmd="fontSize" param="5" status="isFontSize"><span style="font-size: x-large">Large X</span></button>\
-                               <button class="toolbar-button"  cmd="fontSize" param="6" status="isFontSize"><span style="font-size: xx-large">Large XX</span></button>'
-                           }
-                       },
-                       {
-                           title: "Change font background color",
-                           'primary-icon': "ui-icon gpui-icon gpui-icon203",
-                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
-                           html: '<span class="toolbar-dropdown-label"></span>',
-                           slider: {
-                                style: "width:213px; padding: 10px",
-                                html: '<div class="toolbar-colorpicker" name="hiliteColor"></div>'
-                           }
-                       },
-                       {
-                           title: "Change font color",
-                           'primary-icon': "ui-icon gpui-icon gpui-icon202",
-                           'secondary-icon': "ui-icon ui-icon-triangle-1-s",
-                           slider: {
-                               style: "width:213px; padding: 10px",
-                               html: '<div class="toolbar-colorpicker" name="foreColor"></div>'
-                           }
-                       }
+                            style: "min-width:120px",
+                            slider: {
+                                style: "width:200px",
+                                html: '<button class="toolbar-button"  cmd="fontSize" param="1" status="isFontSize"><span style="font-size: x-small">The smallest</span></button>\
+                                <button class="toolbar-button"  cmd="fontSize" param="2" status="isFontSize"><span style="font-size: small">Small</span></button>\
+                                <button class="toolbar-button"  cmd="fontSize" param="3" status="isFontSize"><span style="font-size: medium">Medium</span></button>\
+                                <button class="toolbar-button"  cmd="fontSize" param="4" status="isFontSize"><span style="font-size: large">Large</span></button>\
+                                <button class="toolbar-button"  cmd="fontSize" param="5" status="isFontSize"><span style="font-size: x-large">Large X</span></button>\
+                                <button class="toolbar-button"  cmd="fontSize" param="6" status="isFontSize"><span style="font-size: xx-large">Large XX</span></button>'
+                            }
+                        },
+                        $.zfcore.buttons.hiliteColor,
+                        $.zfcore.buttons.foreColor
                     ]
                 });
 

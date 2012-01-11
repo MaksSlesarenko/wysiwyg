@@ -47,33 +47,26 @@
                 var toolbar = $('<div>').wysiwygToolbar({
                     ui: true, 
                     buttons: [
-                        [
-                            $.zfcore.buttons.b,
-                            /*{
+                        /*[
+                            {
                                 status: "isBold",
                                 title: "Bold",
                                 'primary-icon': "gpui-icon gpui-icon20",
                                 cmd: "bold",
                                 param: true
-                            },*/
+                            },
                             $.zfcore.buttons.i,
-                            $.zfcore.buttons.u
-                        ],
+                            'u'
+                        ],*/
+                        'biu',
                         [
-                            $.zfcore.buttons.indent,
-                            $.zfcore.buttons.outdent,
+                            'indent',
+                            'outdent',
                         ],
-                        [
-                           $.zfcore.buttons.justifyLeft,
-                           $.zfcore.buttons.justifyCenter,
-                           $.zfcore.buttons.justifyRight,
-                        ],
-                        [
-                            $.zfcore.buttons.link,
-                            $.zfcore.buttons.unlink,
-                        ],
-                        $.zfcore.buttons.image,
-                        $.zfcore.buttons.removeFormat
+                        'justify',
+                        'linkToggle',
+                        'image',
+                        'removeFormat'
                     ]
                 });
                 
@@ -81,12 +74,12 @@
                     ui: true, 
                     buttons: [
                         [
-                            $.zfcore.buttons.p,
-                            $.zfcore.buttons.quote,
-                            $.zfcore.buttons.br,
+                            'p',
+                            'quote',
+                            'br',
                         ],
-                        $.zfcore.buttons.formatBlock,
-                        $.zfcore.buttons.fontFace,
+                        'formatBlock',
+                        'fontFace',
                         //$.zfcore.buttons.fontSize,
                         {
                             title: "Change font size",
@@ -104,8 +97,8 @@
                                 <button class="toolbar-button"  cmd="fontSize" param="6" status="isFontSize"><span style="font-size: xx-large">Large XX</span></button>'
                             }
                         },
-                        $.zfcore.buttons.hiliteColor,
-                        $.zfcore.buttons.foreColor
+                        'hiliteColor',
+                        'foreColor'
                     ]
                 });
 

@@ -802,6 +802,10 @@
             if (_self.options.resizable) {
                 var $element = $(_self.element);
                 var $frame = $element.data('frame');
+                
+                $frame = $frame.add($frame.closest('.' + _self.options.frameWrapperClass))
+                               .add($widget.find('.' + _self.options.frameOverlayClass));
+                
                 $widget.resizable(
                     $.extend({}, _self.options.resizable, {
                         start: function(event, ui) {
@@ -812,14 +816,14 @@
                             //$frame.show();
                             _self._frameOverlay(false);
                         },
-                        alsoResize: []//$frame
+                        alsoResize: $frame
                     }
                 ));
-                //alsoResize does not support multiple elements
                 setInterval(function(){
                     if (!$element.is(':visible')) {
                         $element.width($widget.width());
                         $element.height($widget.height());
+                        return;
                     } else {
                         $widget.width($element.width());
                         $widget.height($element.height());
@@ -832,10 +836,9 @@
                         height += $this.height();
                     });
                     
-                    $frame.add($widget.find('.' + _self.options.frameOverlayClass))
-                          .height($widget.height() - height);
+                    $frame.height($widget.height() - height -1);
                     
-                }, 1000);
+                }, 2000);
             } else {
                 $widget.resizable('disable');
             }
@@ -1286,7 +1289,7 @@
                 
                 toolbar.wysiwygToolbar('option' , 'editor', this);
                 
-                $frame.height($frame.height() - toolbar.height());
+                $frame.height($frame.height() - toolbar.height() - 1);
 
             } else {
                 return $widget.children('li.' + this.options.toolbarWrapperClass).children();

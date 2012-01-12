@@ -333,8 +333,6 @@
     };
     
     var buttonsMap = {
-        _self: this,
-        
         b: {
             status: "isBold",
             title: "Bold",
@@ -443,7 +441,7 @@
             cmd: "format", 
             param: "h2", 
             title: "Insert &lt;h2&gt;",
-            html: '<h2>Heading 2"</h2>'
+            html: '<h2>Heading 2</h2>'
         },
         heading3: {
             cmd: "format", 
@@ -645,7 +643,7 @@
            'primary-icon': "ui-icon gpui-icon gpui-icon93",
            'secondary-icon': "ui-icon ui-icon-triangle-1-s",
            html: '<span class="toolbar-dropdown-label"></span>',
-           style: "min-width:120px",
+           style: "min-width:120px;",
            slider: {
                buttons: [
                    'fontFaceSerif',
@@ -702,7 +700,24 @@
                style: "width:213px; padding: 10px",
                html: '<div class="toolbar-colorpicker" name="foreColor"></div>'
            }
-       }
+       },
+       
+       toolbar1: [
+           'biu',
+           ['indent', 'outdent'],
+           'justify',
+           'linkToggle',
+           'image',
+           'removeFormat'
+       ],
+       toolbar2: [
+           ['p', 'quote', 'br'],
+           'formatBlock',
+           'fontFace',
+           'fontSize',
+           'hiliteColor',
+           'foreColor'
+       ]
     };
     
     /**
@@ -1398,6 +1413,12 @@
             if ('string' == typeof(options)) {
                 options = buttonsMap[options];
             }
+            var stub = {};
+            if (options instanceof Array) {
+                stub = [];
+            }
+            options = $.extend(true, stub, options);
+            
             if (options.length) {
                 $button = $('<div>', {'class': this.options.buttonsetClass});
                 for (var j in options) {
@@ -1450,9 +1471,11 @@
             var options = _self.options;
             
             if (options.buttons) {
+                if ('string' == typeof(options.buttons)) {
+                    options.buttons = buttonsMap[options.buttons];
+                }
                 for (var i in options.buttons) {
-                    $button = _self._createButton(options.buttons[i]);
-                    $el.append($button);
+                    $el.append(_self._createButton(options.buttons[i]));
                 }
             }
             

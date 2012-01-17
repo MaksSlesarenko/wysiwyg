@@ -63,6 +63,10 @@
                             'indent',
                             'outdent',
                         ],
+                        [
+	                         'olist',
+	                         'ulist',
+	                     ],
                         'justify',
                         'linkToggle',
                         'image',
@@ -129,54 +133,6 @@
                 	    }
                     }
                 });
-
-                $('body').append(
-        	        $('<h2>', {html: 'API Demonstration', css: {marginTop: '30px'}}),
-        			$('<button>', {
-        				html: 'hide',
-        				click: function() {$('#demo').wysiwyg('hide')}
-        			}),
-        			$('<button>', {
-        				html: 'show',
-        				click: function() {$('#demo').wysiwyg('show')}
-        			}),
-        			$('<button>', {
-        				html: 'enable',
-        				click: function() {$('#demo').wysiwyg('enable')}
-        			}),
-        			$('<button>', {
-        				html: 'disable',
-        				click: function() {$('#demo').wysiwyg('disable')}
-        			}),
-        			$('<button>', {
-        				html: 'alert content',
-        				click: function() { alert( $('#demo').wysiwyg('html') )}
-        			}),
-        			$('<button>', {
-        				html: 'prompt content',
-        				click: function() {
-        					if (html = prompt('Enter html', '')) {
-        					    $('#demo').wysiwyg('html', html);
-        					}
-        				}
-        			}),
-        			$('<button>', {
-        				html: 'destroy',
-        				click: function() { $('#demo').wysiwyg('destroy') }
-        			}),
-        			$('<button>', {
-        				html: 'clean',
-        				click: function() { $('#demo').wysiwyg('clean') }
-        			}),
-        			$('<button>', {
-        				html: 'Old browser usage',
-        				click: function() {
-        					$('#demo').wysiwyg('hide')
-        					$('#demo').yourBrowserSucks({strict: false})
-        					$('#demo').wysiwyg('show')
-        				}
-        			})
-        		);
         	});
         </script>
     </body>

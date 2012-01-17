@@ -337,22 +337,19 @@
             status: "isBold",
             title: "Bold",
             'primary-icon': "gpui-icon gpui-icon20",
-            cmd: "bold",
-            param: true
+            cmd: "bold"
         },
         i: {
             status: "isItalic",
             title: "Italic",
             'primary-icon': "gpui-icon gpui-icon114",
-            cmd: "italic",
-            param: true
+            cmd: "italic"
         },
         u: {
             status: "isUnderline",
             title: "Underline",
             'primary-icon': "gpui-icon gpui-icon187",
-            cmd: "underline",
-            param: true
+            cmd: "underline"
         },
         biu: [
             'b', 'i', 'u'
@@ -366,6 +363,17 @@
             title: "Outdent",
             'primary-icon': "gpui-icon gpui-icon205",
             cmd: "outdent"
+        },
+        olist: {
+            title: "Ordered list",
+            'primary-icon': "gpui-icon gpui-icon201",
+            cmd: "list",
+            param: 'true'
+        },
+        ulist: {
+            title: "Outdent",
+            'primary-icon': "gpui-icon gpui-icon120",
+            cmd: "list"
         },
         justifyLeft: {
             status: "isJustify",
@@ -1062,6 +1070,23 @@
                 }
             }
         },
+        
+        /**
+         * Get path to wysiwyg folder
+         * 
+         * @returns string
+         */
+        _getPath: function() {
+            if (!this.options.path) {
+                var $el = $('script[src*="wysiwyg\.js"]');
+                if ($el.length) {
+                    this.options.path = $el[0].src.replace(/wysiwyg\.js/, '');
+                } else {
+                    throw 'Could not determine path';
+                }
+            }
+            return this.options.path;
+        },
 
         /**
          * Widget public API
@@ -1330,6 +1355,7 @@
          *
          */
         options: {
+            path: null, /* base url */
             wrapperClass: 'wysiwyg-wrapper',
             toolbarWrapperClass: 'wysiwyg-toolbar',
             frameWrapperClass: 'wysiwyg-frame',
@@ -1447,10 +1473,20 @@
                     $slider.addClass(this.options.dropdownSliderClass);
                     options.slider = false;
                 }
-                if (!options.type) {
-                    options.type = 'button';
+                var type = 'button';
+                if (options.type) {
+                    type = options.type;
+                    options.type = undefined;
                 }
-                $button = $('<button>', options).addClass(this.options.buttonClass);
+                $button = $('<button type="'+type+'">', options).addClass(this.options.buttonClass);
+                for (var i in options) {
+                    if (i == 'html' || i == 'text') {
+                        $button[i](options[i]);
+                    } else {
+                        $button.attr(i, options[i]);
+                    }
+                    
+                }
                 
                 if (false == options.text) {
                     $button.attr('text', 'false');

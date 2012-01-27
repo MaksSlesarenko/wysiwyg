@@ -31,109 +31,6 @@
 
         </textarea>
 
-        <div id="toolbar">
-            <div class="toolbar-buttonset">
-	            <button class="toolbar-button" type="button" cmd="bold" status="isBold" title="Bold" primary-icon="gpui-icon gpui-icon20"></button>
-	            <button class="toolbar-button" type="button" cmd="italic" status="isItalic" title="Italic" primary-icon="gpui-icon gpui-icon114"></button>
-	            <button class="toolbar-button" type="button" cmd="underline" status="isUnderline" title="Underline" primary-icon="gpui-icon gpui-icon187"></button>
-            </div>
-
-            <div class="toolbar-buttonset">
-                <button class="toolbar-button" cmd="indent" title="Indent" primary-icon="gpui-icon gpui-icon204"></button>
-                <button class="toolbar-button" cmd="outdent" title="Outdent" primary-icon="gpui-icon gpui-icon205"></button>
-            </div>
-
-            <div class="toolbar-buttonset">
-                <button class="toolbar-button" cmd="list" param="true" title="Ordered List" primary-icon="gpui-icon gpui-icon201"></button>
-                <button class="toolbar-button" cmd="list" title="Unordered List" primary-icon="gpui-icon gpui-icon120"></button>
-            </div>
-
-            <div class="toolbar-buttonset">
-                <button class="toolbar-button" cmd="justify" param="left" status="isJustify" title="Justify left" primary-icon="gpui-icon gpui-icon138"></button>
-                <button class="toolbar-button" cmd="justify" param="center" status="isJustify" title="Justify center" primary-icon="gpui-icon gpui-icon140"></button>
-                <button class="toolbar-button" cmd="justify" param="right" status="isJustify" title="Justify right" primary-icon="gpui-icon gpui-icon139"></button>
-            </div>
-
-            <div class="toolbar-buttonset">
-                <button class="toolbar-button" cmd="link" param="true" title="Insert link" primary-icon="gpui-icon gpui-icon119"></button>
-                <button class="toolbar-button" cmd="unlink" title="Remove link" primary-icon="gpui-icon gpui-icon25"></button>
-            </div>
-
-            <button class="toolbar-button" cmd="image" title="Insert image" primary-icon="gpui-icon gpui-icon148"></button>
-
-            <button class="toolbar-button" cmd="removeFormat" title="Remove formatting" primary-icon="gpui-icon gpui-icon83"></button>
-
-        </div>
-        <div id="toolbar2">
-            
-            <div class="toolbar-buttonset">
-                <button class="toolbar-button" cmd="format" param="p" title="Insert &lt;p&gt;">P</button>
-                <button class="toolbar-button"  cmd="quote" title="Insert quote">&quot;</button>
-                <button class="toolbar-button" cmd="tag" param="br" title="Insert &lt;br&gt;">BR</button>
-            </div>
-            
-            <div class="toolbar-dropdown">
-                <button title="Format block" secondary-icon="ui-icon ui-icon-triangle-1-s">Format</button>
-                <div class="toolbar-dropdown-slider">
-                    <button class="toolbar-button"  cmd="format" param="h1" title="Insert &lt;h1&gt;">Heading 1</button>
-                    <button class="toolbar-button"  cmd="format" param="h2" title="Insert &lt;h2&gt;">Heading 2</button>
-                    <button class="toolbar-button"  cmd="format" param="h3" title="Insert &lt;h3&gt;">Heading 3</button>
-                    <button class="toolbar-button"  cmd="format" param="h4" title="Insert &lt;h4&gt;">Heading 4</button>
-                    <button class="toolbar-button"  cmd="format" param="h5" title="Insert &lt;h5&gt;">Heading 5</button>
-                    <button class="toolbar-button"  cmd="format" param="h6" title="Insert &lt;h6&gt;">Heading 6</button>
-                    <button class="toolbar-button"  cmd="format" param="pre" title="Insert &lt;pre&gt;">Code</button>
-                    <button class="toolbar-button"  cmd="format" param="blockquote" title="Insert &lt;blockquote&gt;">Blockquote</button>
-                </div>
-            </div>
-
-            <div class="toolbar-dropdown">
-                <button title="Change font face" secondary-icon="ui-icon ui-icon-triangle-1-s" primary-icon="ui-icon gpui-icon gpui-icon93"><span class="toolbar-dropdown-label"></span>&nbsp;</button>
-                <div class="toolbar-dropdown-slider">
-                    <button class="toolbar-button"  cmd="fontName" param="serif" status="isFontFace" style="font-family: serif">Serif</button>
-                    <button class="toolbar-button"  cmd="fontName" param="sans-serif" status="isFontFace" style="font-family: sans-serif">Sans Serif</button>
-                    <button class="toolbar-button"  cmd="fontName" param="monospace" status="isFontFace" style="font-family: monospace">Monospace</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Arial" status="isFontFace" style="font-family: Arial">Arial</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Helvetica" status="isFontFace" style="font-family: Helvetica">Helvetica</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Palatino" status="isFontFace" style="font-family: Palatino">Palatino</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Garamond" status="isFontFace" style="font-family: Garamond">Garamond</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Bookman" status="isFontFace" style="font-family: Bookman">Bookman</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Avant Garde" status="isFontFace" style="font-family: Avant Garde">Avant Garde</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Verdana" status="isFontFace" style="font-family: Verdana">Verdana</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Georgia" status="isFontFace" style="font-family: Georgia">Georgia</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Comic Sans MS" status="isFontFace" style="font-family: Comic Sans MS">Comic Sans MS</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Trebuchet MS" status="isFontFace" style="font-family: Trebuchet MS">Trebuchet MS</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Arial Black" status="isFontFace" style="font-family: Arial Black">Arial Black</button>
-                    <button class="toolbar-button"  cmd="fontName" param="Impact" status="isFontFace" style="font-family: Impact">Impact</button>
-                </div>
-            </div>
-
-            <div class="toolbar-dropdown" id="fontSize">
-                <button title="Change font size" secondary-icon="ui-icon ui-icon-triangle-1-s" primary-icon="ui-icon gpui-icon gpui-icon94"><span class="toolbar-dropdown-label"></span>&nbsp;</button>
-                <div class="toolbar-dropdown-slider" style="width:200px">
-                    <button class="toolbar-button"  cmd="fontSize" param="1" status="isFontSize"><span style="font-size: x-small">The smallest</span></button>
-                    <button class="toolbar-button"  cmd="fontSize" param="2" status="isFontSize"><span style="font-size: small">Small</span></button>
-                    <button class="toolbar-button"  cmd="fontSize" param="3" status="isFontSize"><span style="font-size: medium">Medium</span></button>
-                    <button class="toolbar-button"  cmd="fontSize" param="4" status="isFontSize"><span style="font-size: large">Large</span></button>
-                    <button class="toolbar-button"  cmd="fontSize" param="5" status="isFontSize"><span style="font-size: x-large">Large X</span></button>
-                    <button class="toolbar-button"  cmd="fontSize" param="6" status="isFontSize"><span style="font-size: xx-large">Large XX</span></button>
-                </div>
-            </div>
-
-            <div class="toolbar-dropdown">
-                <button title="Change font color" secondary-icon="ui-icon ui-icon-triangle-1-s" primary-icon="ui-icon gpui-icon gpui-icon202"></button>
-                <div class="toolbar-dropdown-slider" style="width:213px; padding: 10px">
-                    <div class="toolbar-colorpicker" name="foreColor"></div>
-                </div>
-            </div>
-
-            <div class="toolbar-dropdown">
-                <button title="Change font background color" secondary-icon="ui-icon ui-icon-triangle-1-s" primary-icon="ui-icon gpui-icon gpui-icon203"></button>
-                <div class="toolbar-dropdown-slider" style="width:213px; padding: 10px">
-                    <div class="toolbar-colorpicker" name="hiliteColor"></div>
-                </div>
-            </div>
-        </div>
-        
         <style type="text/css">
         #demo {
             width: 800px;
@@ -148,35 +45,13 @@
 
         <script type="text/javascript">
         	$(function(){
-                var toolbar = $('#toolbar').wysiwygToolbar({ui: true});
-                var toolbar2 = $('#toolbar2').wysiwygToolbar({ui: true});
+                var toolbar = $('#toolbar').wysiwygToolbar({buttons: toolbar1});
+                var toolbar2 = $('#toolbar2').wysiwygToolbar({buttons: toolbar2});
 
                 $('#demo').wysiwyg({
-                    ui: true,
                     css: "src/frame/default.css"
                 }).wysiwyg('toolbar', toolbar)
-                  .wysiwyg('toolbar', toolbar2)
-                  .wysiwyg('commands', {
-                    link: function () {
-                        var selected = this.selected();
-
-                        if (selected) {
-                            var url = prompt('Enter url', 'http://');
-
-                            if (url) {
-                                this._exec('createLink', url);
-                            } else {
-                                this._exec('unlink');
-                            }
-                        }
-                    },
-                    image: function() {
-                	    var url = prompt('Insert image url', '');
-                	    if (url) {
-                            $('#demo').wysiwyg('exec', 'inserthtml', '<img src="' + url + '"/>');
-                	    }
-                    }
-                });
+                  .wysiwyg('toolbar', toolbar2);
 
                 $('body').append(
         	        $('<h2>', {html: 'API Demonstration', css: {marginTop: '30px'}}),

@@ -285,32 +285,10 @@
                 var toolbar = $('#toolbar').wysiwygToolbar();
                 var toolbar2 = $('#toolbar2').wysiwygToolbar();
 
-
                 $('#demo').wysiwyg({
                     css: "src/frame/default.css"
                 }).wysiwyg('toolbar', toolbar)
-                  .wysiwyg('toolbar', toolbar2)
-                  .wysiwyg('commands', {
-                    link: function () {
-                        var selected = this.selected();
-
-                        if (selected) {
-                            var url = prompt('Enter url', 'http://');
-
-                            if (url) {
-                                this._exec('createLink', url);
-                            } else {
-                                this._exec('unlink');
-                            }
-                        }
-                    },
-                    image: function() {
-                	    var url = prompt('Insert image url', '');
-                	    if (url) {
-                            $('#demo').wysiwyg('exec', 'inserthtml', '<img src="' + url + '"/>');
-                	    }
-                    }
-                });
+                  .wysiwyg('toolbar', toolbar2);
                     
                 $('#themeGallery a').click(function(e){
                     e.preventDefault();

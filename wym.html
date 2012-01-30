@@ -44,13 +44,9 @@
 
         <script type="text/javascript">
             $(function(){
-                var toolbar = $('#toolbar').wysiwygToolbar();
-
-
                 $('#demo').wysiwyg({
                     css: "src/frame/wym.css"
-                }).wysiwyg('toolbar', $('<div>').wysiwygToolbar({
-                   buttons: [
+                }).wysiwyg('toolbar', [
                        'biu',
                        [
                            'indent',
@@ -64,8 +60,7 @@
                        'linkToggle',
                        'image',
                        'removeFormat'
-                   ]
-                }));
+                   ]);
              });
         </script>
     </body>
